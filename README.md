@@ -1,6 +1,6 @@
 # Dist_libtiff
 
-This is a script to build libtiff Windows binaries from the sources
+This is a script to build <a href="http://www.simplesystems.org/libtiff/"> libtiff </a> Windows binaries using <a href="https://www.appveyor.com">AppVeyor</a><br />
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1jj40ko9jjqtyjwt?svg=true)](https://ci.appveyor.com/project/maxirmx/dist-libtiff)
 
