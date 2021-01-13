@@ -1,0 +1,53 @@
+environment:
+  global:
+    VisualStudio:     '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC"'
+    libtiff_version:  "4.2.0"
+  matrix:
+  - configuration: release
+  - configuration: debug
+  
+platform:
+  - x86
+  - amd64
+
+init:
+  - '%VisualStudio%\vcvarsall.bat %platform%'
+
+install:
+  # Get libjpeg source 
+  - ps: ./load-libtiff.ps1 $env:libtiff_version
+   
+build_script:                                                                                   
+  # Build
+  - ps: ./build-libtiff.ps1 $env:platform $env:configuration
+
+#after_build:
+  - mkdir d
+  - mkdir d\include
+  - mkdir d\lib
+  - mkdir d\bin
+  - copy libtiff\*.lib d\lib
+  - copy libtiff\*.pdb d\lib
+  - copy libtiff\*.dll d\bin
+  - copy libtiff\*.h d\include
+  - cd d
+  - 7z a -tzip -r -y ..\libtiff-%platform%-%configuration%.zip *.*
+   
+test: off
+
+artifacts:
+   - path: libtiff-%platform%-%configuration%.zip
+   
+deploy:
+- provider: GitHub
+# I am tagging through github
+# Tag format is v<major version>.<minor version>, shall be consistent with major.monir of Appveyor build
+# release: v$(appveyor_build_version)
+  description: 'libtiff AppVeyor build script v$(appveyor_build_version) with binaries'
+  auth_token:
+    secure: 7fz/vsEpOOUyPYNmrykrY4lgqu3XQsag6g4x25nOwtd2dM2kc3X3GPoPzMCMDno/
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
