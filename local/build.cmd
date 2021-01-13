@@ -13,7 +13,7 @@ rem --------------------------------------------------------------------
 cd ..
 
 IF NOT EXIST libjpeg  (powershell -ExecutionPolicy Bypass %~dp0..\load-libtiff.ps1) 
-powershell -ExecutionPolicy Bypass .\build-libtiff.ps1 %1 %2 -configure
+rem powershell -ExecutionPolicy Bypass .\build-libtiff.ps1 %1 %2 -configure
 
 cd %~dp0
 
