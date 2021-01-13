@@ -31,7 +31,7 @@ build_script:
   - copy libtiff\libtiff\*.dll d\bin
   - copy libtiff\libtiff\*.h d\include
   - copy libtiff\tools\*.exe d\bin
-  - copy libtiff\tools\*.pdb d\bin
+#  - copy libtiff\tools\*.pdb d\bin
   - cd d
   - 7z a -tzip -r -y ..\libtiff-%platform%-%configuration%.zip *.*
    
