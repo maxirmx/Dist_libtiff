@@ -26,10 +26,10 @@ build_script:
   - mkdir d\include
   - mkdir d\lib
   - mkdir d\bin
-  - copy libtiff\*.lib d\lib
-  - copy libtiff\*.pdb d\lib
-  - copy libtiff\*.dll d\bin
-  - copy libtiff\*.h d\include
+  - copy libtiff\libtiff\*.lib d\lib
+  - copy libtiff\libtiff\*.pdb d\lib
+  - copy libtiff\libtiff\*.dll d\bin
+  - copy libtiff\libtiff\*.h d\include
   - cd d
   - 7z a -tzip -r -y ..\libtiff-%platform%-%configuration%.zip *.*
    
