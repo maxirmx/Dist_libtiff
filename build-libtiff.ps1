@@ -17,11 +17,11 @@ Param (
 
  switch($configuration) {
    "release" { 
-     $bp =  @("-x -", "-f", "makefile.vs") 
+     $bp =  @("-x-", "-f", "Makefile.vc") 
      break; 
    } 
    "debug"   { 
-     $bp =  @("-x -", "-f", "makefile.vs", "DEBUG=1") 
+     $bp =  @("-x-", "-f", "Makefile.vc", "DEBUG=1") 
      break; 
    } 
    default   { "build-libtiff.ps1: configuration <" + $configuration + "> was not recognized"; exit (-1);  } 
